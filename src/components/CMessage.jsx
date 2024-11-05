@@ -6,7 +6,7 @@ import ScrollableFeed from 'react-scrollable-feed'
 
 
 
-const ChatMessages = ({ name }) => {
+const CMessage = ({ name }) => {
 
   const [message, setMessage] = useState('');
   const {messages} = useSelector(state => state.chatReducer)
@@ -61,13 +61,13 @@ const ChatMessages = ({ name }) => {
                 {
                   socket.id == msg.userId ?
                     <>
-                      <h6 style={{ float: "right" }}>You : {msg.text}</h6>
+                      <h6  style={{ float: "right" }}> <i class="fa-solid fa-user text-success"></i> : {msg.text}</h6>
                       <br />
                     </>
 
                     :
                     <>
-                      <h6>{msg.user} : {msg.text}</h6>
+                      <h6><i class="fa-solid fa-user text-primary"></i>{msg.user} : {msg.text}</h6>
 
                     </>
                 }
@@ -76,21 +76,18 @@ const ChatMessages = ({ name }) => {
 
       </ul>
               </ScrollableFeed>
-
-
       <div >
-        <input
-          className='w-75'
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type your message..."
-          onKeyDown={(e) => e.code === 'Enter' ? sendMessage() : null}
-        />
-        <button onClick={sendMessage} className='btn btn-success rounded-circle shadow ms-3'><i className="fa-solid fa-angles-right"></i></button>
+      <input
+  className='glow-input w-75'
+  type="text"
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
+  placeholder="Message"
+  onKeyDown={(e) => e.code === 'Enter' ? sendMessage() : null}/>
+        <button onClick={sendMessage} className='btn btn-danger rounded-circle shadow ms-2'><i class="fa-regular fa-paper-plane"></i></button>
       </div>
     </div>
   )
 }
 
-export default ChatMessages
+export default CMessage
